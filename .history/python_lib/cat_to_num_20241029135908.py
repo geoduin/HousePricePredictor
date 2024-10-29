@@ -3,4 +3,7 @@ from pandas import DataFrame
 
 def convert_cat_to_numeric(data: DataFrame, mapping: list, column_name: str):
     
-    return data
+    encoder = OrdinalEncoder(categories=mapping)
+    
+    data[column_name] = encoder.fit_transform(data[column_name])
+    data.head()

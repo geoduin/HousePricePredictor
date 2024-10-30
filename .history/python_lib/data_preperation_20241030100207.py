@@ -15,12 +15,12 @@ def remove_outliers(df):
     df["GrLivArea"] = df[filtering_grlivArea]
 
     print(len(df))
-    # filtering_overqual = df["OverallQual"] > 1.5
-    # df["OverallQual"] = df[filtering_overqual]
+    filtering_overqual = df["OverallQual"] > 1
+    df["OverallQual"] = df[filtering_overqual]
 
-    # print(len(df))
-    # filtering_totRms = df["TotRmsAbvGrd"] < 11
-    # df["TotRmsAbvGrd"] = df[filtering_totRms]
+    print(len(df))
+    filtering_totRms = df["TotRmsAbvGrd"] < 11
+    df["TotRmsAbvGrd"] = df[filtering_totRms]
     
     return df
 

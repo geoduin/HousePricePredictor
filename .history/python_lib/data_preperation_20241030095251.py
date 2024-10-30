@@ -5,22 +5,15 @@ def impute_empty_category_data(df):
     df["FireplaceQu"] = df["FireplaceQu"].fillna("NA")
     df["GarageFinish"] = df["GarageFinish"].fillna("NA")
     
-
-    
-    return df
-
-def remove_outliers(df):
     # Outliers verwijderen, mits het aantal niet te groot is.
     filtering_grlivArea = df["GrLivArea"] < 4000
+    filtering_overqual = df["OverallQual"] > 1
+    filtering_totRms = df["TotRmsAbvGrd"] < 11
+
+    # Filter outliers
     df["GrLivArea"] = df[filtering_grlivArea]
-
-    print(len(df))
-    # filtering_overqual = df["OverallQual"] > 1.5
-    # df["OverallQual"] = df[filtering_overqual]
-
-    # print(len(df))
-    # filtering_totRms = df["TotRmsAbvGrd"] < 11
-    # df["TotRmsAbvGrd"] = df[filtering_totRms]
+    df["OverallQual"] = df[filtering_overqual]
+    df["TotRmsAbvGrd"] = df[filtering_totRms]
     
     return df
 

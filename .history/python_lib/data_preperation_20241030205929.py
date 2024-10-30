@@ -1,3 +1,4 @@
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import OrdinalEncoder
 from pandas import DataFrame
 
@@ -19,6 +20,7 @@ def impute_empty_category_data(df):
     # Missende waarden opvullen met NA waarde.
     df["FireplaceQu"] = df["FireplaceQu"].fillna("NA")
     df["GarageFinish"] = df["GarageFinish"].fillna("NA")
+    
     return df
 
 def remove_outliers(df):
@@ -37,12 +39,11 @@ def encode_categorical_data(df: DataFrame):
     df = get_ordinal(df, "GarageFinish", mapGarageFin)
     return df
 
-def one_hot_encode_data(df: DataFrame):
-    # Is leeg, maar in het geval dat er wel nominale waarden ontbreekt, dan kan deze methode toegepast worden om dit af te handelen.
-    return df
-
 def get_ordinal(dataframe: DataFrame, column: str, maps):
     # Impute missing values with a specific category (e.g., "NA")
     encoder = OrdinalEncoder(categories=[maps])
     dataframe[column] = encoder.fit_transform(dataframe[[column]])
     return dataframe
+
+def _is_dtype(column):
+    return column.dtype == "O"

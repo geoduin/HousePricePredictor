@@ -1,3 +1,4 @@
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import OrdinalEncoder
 from pandas import DataFrame
 

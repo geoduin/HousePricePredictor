@@ -1,3 +1,4 @@
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import OrdinalEncoder
 from pandas import DataFrame
 
@@ -46,3 +47,6 @@ def get_ordinal(dataframe: DataFrame, column: str, maps):
     encoder = OrdinalEncoder(categories=[maps])
     dataframe[column] = encoder.fit_transform(dataframe[[column]])
     return dataframe
+
+def _is_dtype(column):
+    return column.dtype == "O"
